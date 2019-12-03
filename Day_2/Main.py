@@ -1,32 +1,5 @@
+import time
 import math
-
-lines = []
-with open(r'AdventofCode2019\Day_1\Input.txt') as file:
-    for line in file:
-        lines.append( list(map( int, line.strip().split(',') ) ) )
-    if len(lines) == 1:
-        lines = lines[0]
-    memory = lines  
-
-""" 
-# setup for repair
-memory[1] = 12; memory[2] = 2
-
-l = len(memory)
-
-for i in range(0,l,4):
-    instruction = memory[i]
-    if instruction == 99:
-        break
-    
-    parameter_1 = memory[i+1]; parameter_2 = memory[i+2]; parameter_3 = memory[i+3]
-
-    if instruction == 1:
-        memory[parameter_3] = memory[parameter_1] + memory[parameter_2]
-    elif instruction == 2:
-        memory[parameter_3] = memory[parameter_1] * memory[parameter_2]
- """
-
 
 class opComp():
     def __init__(self, memory, validate = None, initialize = None):
@@ -67,14 +40,26 @@ class opComp():
 
 
 if __name__ == "__main__":
+    t1 = time.time()
     memory = [1,0,0,0,99]
+    print(memory)
     c1 = opComp(memory, validate=[2,0,0,0,99])
+    print(c1.memory, end='\n\n')
+
     memory = [2,3,0,3,99]
+    print(memory)
     c2 = opComp(memory, validate=[2,3,0,6,99])
+    print(c2.memory, end='\n\n')
+
     memory = [2,4,4,5,99,0]
+    print(memory)
     c3 = opComp(memory, validate=[2,4,4,5,99,9801])
+    print(c3.memory, end='\n\n')
+
     memory = [1,1,1,4,99,5,6,0,99]
+    print(memory)
     c4 = opComp(memory, validate=[30,1,1,4,2,5,6,0,99])
+    print(c4.memory, end='\n\n')
 
     lines = []
     with open(r'AdventofCode2019\Day_1\Input.txt') as file:
@@ -83,11 +68,13 @@ if __name__ == "__main__":
         if len(lines) == 1:
             lines = lines[0]
         memory = lines
-    print(memory)
     c = opComp(memory, initialize=([(1,12),(2,2)]))
-    print(memory)
+    print(f"Part 1 -- {c.output}", '\n')
+
     for noun in range(100):
         for verb in range(100):
             c = opComp(memory, initialize=([(1,noun),(2,verb)]))
             if c.output == 19690720:
-                print(f"Noun: {noun}, Verb: {verb}, ans = {100*noun + verb}")
+                print(f"Part 2 -- Noun: {noun}, Verb: {verb}, ans = {100*noun + verb}")
+
+    print(f"Total time: {time.time() - t1}")
