@@ -50,3 +50,9 @@ for each in passwords:
 print(f"Part 1 -- {len(passwords)}, t: {t2-t1:.4f}")
 print(f"Part 2 -- {len(new_passwords)}, t: {time.time() - t2:.4f}")
 print(f"Total time: {time.time()-t1}")
+
+""" 
+Part 1 -- 1873, t: 2.7710
+Part 2 -- 1264, t: 0.0260
+Total time: 2.7970130443573
+"""
