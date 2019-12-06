@@ -27,11 +27,11 @@ class opComp():
 
 
     def opCode1(self):
-        parameter_1 = memory[self.instPoint+1]; parameter_2 = memory[self.instPoint+2]; parameter_3 = memory[self.instPoint+3]
+        parameter_1 = self.memory[self.instPoint+1]; parameter_2 = self.memory[self.instPoint+2]; parameter_3 = memory[self.instPoint+3]
         self.memory[parameter_3] = self.memory[parameter_1] + self.memory[parameter_2]
         self.instPoint += 4
     def opCode2(self):
-        parameter_1 = memory[self.instPoint+1]; parameter_2 = memory[self.instPoint+2]; parameter_3 = memory[self.instPoint+3]
+        parameter_1 = self.memory[self.instPoint+1]; parameter_2 = self.memory[self.instPoint+2]; parameter_3 = memory[self.instPoint+3]
         self.memory[parameter_3] = self.memory[parameter_1] * self.memory[parameter_2]
         self.instPoint += 4
     def opCode99(self):

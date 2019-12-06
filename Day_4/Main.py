@@ -1,7 +1,6 @@
 import time
 t1 = time.time()
 
-
 from collections import Counter
 
 def valid_num(number, l):
@@ -21,13 +20,6 @@ def valid_num_2(number, l):
     if values.count(2) > 0:
         return True
     return False
-
-
-
-
-
-
-
 
 puzzle_input = (136760,595730)
 
