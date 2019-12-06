@@ -62,21 +62,39 @@ class orbit_map():
             self.target = None
             self.jumps = 0
 
-        def travel(self):
+        def travel(self, target = None):
             breaker = 0
-            while breaker < 100 and self.target not in [each.id for each in self.current.orbitted]:
-                if self.check_branch(self.current):
-                    print('found')
-
+            self.target = target
+            while breaker < 10000:
+                self.move()
 
                 breaker += 1
-            pass
+                if self.target in [each.id for each in self.current.orbitted]:
+                    break
+            
+        def move(self):
+            if self.check_branch(self.current):
+                self.move_up()
+            else:
+                self.move_down()
+            self.jumps += 1
 
-        def check_branch(self, current):
-            if not current.orbitted:
-                return False
-            if self.target not in [each.id for each in self.current.orbitted]:
-                for each in self.current.orbitted:
+        def move_up(self):
+            for each in self.current.orbitted:
+                if self.check_branch(each):
+                    self.current = each
+                    return
+            print('something went wrong')
+
+
+        def move_down(self):
+            self.current = self.current.parent
+
+        def check_branch(self, obj):
+            if obj.orbitted:
+                if self.target in [each.id for each in obj.orbitted]:
+                    return True
+                for each in obj.orbitted:
                     if self.check_branch(each):
                         return True
             return False
@@ -87,12 +105,16 @@ class orbit_map():
 
 if __name__ == "__main__":
     t0 = time.time()
-
-
-    raw = get_input(test=True)
+    raw = get_input(test=False)
     m = orbit_map(raw)
     t1 = time.time()
-    print(f"Part 1 -- {m.total}, time: {t1-t0:0.4f}S") 
-    m.ship.travel()
+    m.ship.travel('SAN')
     t2 = time.time()
-    print(f"Part 1 -- {m.total}, time: {t2-t1:0.4f}S") 
+    print(f"Part 1 -- {m.total}, time: {t1-t0:0.4f}S") 
+    print(f"Part 2 -- {m.ship.jumps}, time: {t2-t1:0.4f}S") 
+
+
+""" 
+Part 1 -- 122385, time: 0.0530S
+Part 2 -- 271, time: 0.0590S
+"""
