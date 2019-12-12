@@ -1,5 +1,8 @@
-print( int(1>0))
 
 
-if [1]:
-    print(2)
+
+t = [0] * 10
+
+t[1] = 2
+
+print(t)
