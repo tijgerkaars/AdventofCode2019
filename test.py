@@ -10,18 +10,9 @@ def lcm(a, b):
     return a * b / gcd(a, b)
 
 
-def modish(a,b):
-    print(a//b + int(a%b!=0))
+r1 = range(11)
+r2 = range(10,-1,-1)
 
-def modish_(a,b):
-    i = 1
-    while a > b:
-        a -= b; i += 1
-    return i
+l = [i for i in r1] + [i for i in r2]
 
-print(modish(17,8))
-
-
-print(
-    82892753 - 82892752
-)
+print(l)
