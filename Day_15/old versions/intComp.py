@@ -28,7 +28,6 @@ class opComp():
         self.memSize = len(self.memory)
         memory = None
 
-        self.warned = False
 
         self.opcodes = {
             "01" : self.opCode1,
@@ -53,16 +52,14 @@ class opComp():
 
 
         if inp != None:
-            self.run_instruction()
+            self.run_prog()
 
     def set_memory(self, ind, inp):
         self.memory[ind] = inp
 
-    def run_instruction(self, inp = None, ret = True):
+    def run_prog(self, inp = None, ret = False):
         if self.finished:
-            if self.warned == False:
-                print('this program is done, but tried to run again')
-                self.warned = True
+            print('this program is done, but tried to run again')
             return 'this program is done, but tried to run again'
         if inp != None:
             self.input_l.append(inp)
@@ -181,4 +178,4 @@ class opComp():
 
 
 if __name__ == "__main__":
-    import Main
+    import Main_v1
